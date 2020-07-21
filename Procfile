@@ -1,1 +1,1 @@
-web:gunicorn server:quick-response-code-generator
+web: gunicorn server:app
