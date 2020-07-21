@@ -24,4 +24,4 @@ def qr_code_generate():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=8000)
