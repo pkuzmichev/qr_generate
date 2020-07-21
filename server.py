@@ -1,6 +1,6 @@
 from flask import Flask, send_file, request
 
-from qr.quick_response_code import QuickResponseCode
+from quick_response_code import QuickResponseCode
 
 app = Flask(__name__,
             static_url_path='',
@@ -20,8 +20,8 @@ def qr_code_generate():
 
     qr_code = QuickResponseCode()
     qr_code.generate_qr_code(data)
-    return send_file('../qr_code/qr_code.png')
+    return send_file('qr_code/qr_code.png')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

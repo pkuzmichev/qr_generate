@@ -4,7 +4,7 @@ import logging
 
 class QuickResponseCode:
 
-    def generate_qr_code(self, data='kek', path='../qr_code/qr_code.png'):
+    def generate_qr_code(self, data='kek', path='qr_code/qr_code.png'):
         qr_code = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -21,4 +21,4 @@ class QuickResponseCode:
         img = qr_code.make_image(fill_color="black", back_color="white")
         logging.info('qr_code make image')
         img.save(path)
-        logging.info('qr_code save image to ../qr_code/qr_code.png')
+        logging.info('qr_code save image to qr_code/qr_code.png')
