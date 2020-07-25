@@ -1,9 +1,10 @@
 import os
+import telebot
 
-import config, telebot
 from quick_response_code import QuickResponseCode
 
 
+print(os.environ.get('BOT_API'))
 bot = telebot.TeleBot(os.environ.get('BOT_API'), parse_mode=None)
 
 

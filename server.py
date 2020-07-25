@@ -1,5 +1,6 @@
 from flask import Flask, send_file, request, render_template, send_from_directory
 
+from bot import bot
 from quick_response_code import QuickResponseCode
 
 app = Flask(__name__,
@@ -26,3 +27,4 @@ def qr_code_generate():
 
 if __name__ == '__main__':
     app.run(port=8000)
+    bot.infinity_polling()
