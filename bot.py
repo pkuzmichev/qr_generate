@@ -1,7 +1,10 @@
+import os
+
 import config, telebot
 from quick_response_code import QuickResponseCode
 
-bot = telebot.TeleBot(config.BOT_API, parse_mode=None)
+
+bot = telebot.TeleBot(os.environ.get('BOT_API'), parse_mode=None)
 
 
 @bot.message_handler(commands=['start', 'help'])
