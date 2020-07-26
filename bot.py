@@ -25,7 +25,7 @@ def send_qr(message):
 def query_text(query):
     try:
         qr = QuickResponseCode()
-        qr.generate_qr_code(query)
+        qr.generate_qr_code(query.query)
         with open('qr_code/qr_code.png', 'rb') as f:
             contents = f.read()
         r_sum = types.InlineQueryResultArticle(
@@ -33,7 +33,7 @@ def query_text(query):
             description='Input text or link and I generate QR code for you!',
             input_message_content=types.InputMediaPhoto(
                 media=contents,
-                caption=query
+                caption=query.query
             )
         )
         bot.answer_inline_query(query.id, [r_sum], cache_time=2147483646)
