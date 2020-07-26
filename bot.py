@@ -21,35 +21,20 @@ def send_qr(message):
         bot.send_photo(chat_id=message.chat.id, photo=contents, caption=message.text)
 
 
-# @bot.inline_handler(func=lambda query: len(query.query) > 0)
-# # def query_text(query):
-# #     hint = 'Input text or link and I generate QR code for you!'
-# #     r = types.InlineQueryResultArticle(
-# #         id='1',
-# #         title='QR Bot',
-# #         description=hint,
-# #         input_message_content=types.InputTextMessageContent(
-# #             message_text='No data :('
-# #         )
-# #     )
-# #     bot.answer_inline_query(query.id, [r])
-
-
 @bot.inline_handler(func=lambda query: len(query.query) > 0)
 def query_text(query):
     try:
         qr = QuickResponseCode()
-        qr.generate_qr_code(query.query)
+        qr.generate_qr_code(query)
         with open('qr_code/qr_code.png', 'rb') as f:
             contents = f.read()
-        r_sum = types.InlineQueryResultPhoto(
+        r_sum = types.InlineQueryResultArticle(
             id='1', title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            photo_url='qr_code/qr_code.png',
-            thumb_url='qr_code/qr_code.png'
-            # input_message_content=types.InputMediaPhoto(
-            #     media=contents
-            #     InlineQueryResultArticle
+            input_message_content=types.InputMediaPhoto(
+                media=contents,
+                caption=query
+            )
         )
         bot.answer_inline_query(query.id, [r_sum], cache_time=2147483646)
     except Exception as e:
