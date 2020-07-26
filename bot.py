@@ -42,12 +42,14 @@ def query_text(query):
         qr.generate_qr_code(query.query)
         with open('qr_code/qr_code.png', 'rb') as f:
             contents = f.read()
-        r_sum = types.InlineQueryResultArticle(
+        r_sum = types.InlineQueryResultPhoto(
             id='1', title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            input_message_content=types.InputMediaPhoto(
-                media=contents
-            )
+            photo_url='qr_code/qr_code.png',
+            thumb_url='qr_code/qr_code.png'
+            # input_message_content=types.InputMediaPhoto(
+            #     media=contents
+            #     InlineQueryResultArticle
         )
         bot.answer_inline_query(query.id, [r_sum], cache_time=2147483646)
     except Exception as e:
