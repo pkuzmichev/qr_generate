@@ -38,7 +38,7 @@ def send_qr(message):
 @bot.inline_handler(func=lambda query: len(query.query) > 0)
 def query_text(query):
     # try:
-        # matches = re.match(digits_pattern, query.query)
+    # matches = re.match(digits_pattern, query.query)
     # Вылавливаем ошибку, если вдруг юзер ввёл чушь
     # или задумался после ввода первого числа
     # except AttributeError as ex:
@@ -48,28 +48,24 @@ def query_text(query):
     # num1, num2 = matches.group().split()
     try:
         # m_sum = int(num1) + int(num2)
+        qr = QuickResponseCode()
+        qr.generate_qr_code(query.query)
         r_sum = types.InlineQueryResultArticle(
-                id='1', title="Сумма",
-                # Описание отображается в подсказке,
-                # message_text - то, что будет отправлено в виде сообщения
-                description="Результат",
-                input_message_content=types.InputTextMessageContent(
-                message_text="{!s} + {!s} = {!s}")
-                # Указываем ссылку на превью и его размеры
-        )
-        # m_sub = int(num1) - int(num2)
-        r_sub = types.InlineQueryResultArticle(
-                id='2', title="Разность",
-                description="Результат: {!s}",
-                input_message_content=types.InputTextMessageContent(
-                message_text="{!s} - {!s} = {!s}")
+            id='1', title='Create QR Code',
+            # Описание отображается в подсказке,
+            # message_text - то, что будет отправлено в виде сообщения
+            description='Input text or link and I generate QR code for you!',
+            input_message_content=types.InputMediaPhoto(
+                media='qr_code/qr_code.png'
+            )
+            # Указываем ссылку на превью и его размеры
         )
         # Учтем деление на ноль и подготовим 2 варианта развития событий
 
         # В нашем случае, результаты вычислений не изменятся даже через долгие годы, НО!
         # если где-то допущена ошибка и cache_time уже выставлен большим, то это уже никак не исправить (наверное)
         # Для справки: 2147483646 секунд - это 68 с копейками лет :)
-        bot.answer_inline_query(query.id, [r_sum, r_sub], cache_time=2147483646)
+        bot.answer_inline_query(query.id, [r_sum], cache_time=2147483646)
     except Exception as e:
         print("{!s}\n{!s}".format(type(e), str(e)))
 
