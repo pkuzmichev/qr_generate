@@ -50,13 +50,15 @@ def query_text(query):
         # m_sum = int(num1) + int(num2)
         qr = QuickResponseCode()
         qr.generate_qr_code(query.query)
+        with open('qr_code/qr_code.png', 'rb') as f:
+            contents = f.read()
         r_sum = types.InlineQueryResultArticle(
             id='1', title='Create QR Code',
             # Описание отображается в подсказке,
             # message_text - то, что будет отправлено в виде сообщения
             description='Input text or link and I generate QR code for you!',
             input_message_content=types.InputMediaPhoto(
-                media='qr_code/qr_code.png'
+                media=contents
             )
             # Указываем ссылку на превью и его размеры
         )
