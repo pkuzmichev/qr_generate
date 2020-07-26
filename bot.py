@@ -31,9 +31,8 @@ def query_text(query):
         r_sum = types.InlineQueryResultArticle(
             id='1', title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            input_message_content=types.InputMediaPhoto(
-                media=contents,
-                caption=query.query
+            input_message_content=types.InputTextMessageContent(
+                message_text='kek'
             )
         )
         bot.answer_inline_query(query.id, [r_sum], cache_time=2147483646)
