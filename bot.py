@@ -28,7 +28,7 @@ def query_text(query):
         qr = QuickResponseCode()
         qr.generate_qr_code(query.query)
 
-        url = 'https://api.telegram.org/bot' + os.environ.get('BOT_API') + 'sendPhoto'
+        url = 'https://api.telegram.org/bot' + os.environ.get('BOT_API') + '/sendPhoto'
 
         files = {'photo': open('qr_code/qr_code.png', 'rb')}
         # data = {'chat_id': query.id}
