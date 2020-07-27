@@ -31,8 +31,8 @@ def query_text(query):
         url = 'https://api.telegram.org/bot' + os.environ.get('BOT_API') + 'sendPhoto'
 
         files = {'photo': open('qr_code/qr_code.png', 'rb')}
-        data = {'chat_id': query.id}
-        r = requests.post(url, files=files, data=data)
+        # data = {'chat_id': query.id}
+        r = requests.post(url, files=files)
 
         print(r.json())
 
