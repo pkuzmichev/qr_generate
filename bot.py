@@ -29,9 +29,9 @@ def query_text(query):
         qr.generate_qr_code(query.query)
 
         url = 'https://api.telegram.org/bot' + os.environ.get('BOT_API') + '/sendPhoto'
-
+        #  'description': 'Bad Request: chat_id is empty
         files = {'photo': open('qr_code/qr_code.png', 'rb')}
-        # data = {'chat_id': query.id}
+        data = {'chat_id': query.chat}
         r = requests.post(url, files=files)
 
         print(r.json())
