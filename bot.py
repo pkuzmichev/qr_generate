@@ -34,7 +34,7 @@ def query_text(query):
         data = {'chat_id': query.id}
         r = requests.post(url, files=files, data=data)
 
-        print('KEK ' + r.json())
+        print('KEK ' + str(r.json()))
 
         # with open('qr_code/qr_code.png', 'rb') as f:
         #     contents = f.read()
