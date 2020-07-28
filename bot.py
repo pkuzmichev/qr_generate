@@ -32,7 +32,7 @@ def query_text(query):
         #  'description': 'Bad Request: chat_id is empty
         files = {'photo': open('qr_code/qr_code.png', 'rb')}
         data = {'chat_id': query.id}
-        r = requests.post(url, files=files)
+        r = requests.post(url, files=files, data=data)
 
         print(r.json())
 
