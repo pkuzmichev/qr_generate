@@ -31,22 +31,25 @@ def query_text(query):
         url = 'https://api.telegram.org/bot' + os.environ.get('BOT_API') + '/sendPhoto'
         #  'description': 'Bad Request: chat_id is empty
         files = {'photo': open('qr_code/qr_code.png', 'rb')}
-        data = {'chat_id': query.id}
+        data = {'chat_id': query.query.id}
         r = requests.post(url, files=files, data=data)
 
+        print(query.query.id)
+
+        # KEK {'ok': False, 'error_code': 400, 'description': 'Bad Request: chat not found'}
         print('KEK ' + str(r.json()))
 
         # with open('qr_code/qr_code.png', 'rb') as f:
         #     contents = f.read()
         r_sum = types.InlineQueryResultArticle(
-            id='1', title='Create QR Code',
+            id='1', title='Create QR    Code',
             description='Input text or link and I generate QR code for you!',
             input_message_content=types.InputMediaPhoto(
-                media='qr_code/qr_code.png',
+                media='attach://qr_code.png',
             )
         )
 
-        bot.answer_inline_query(query.id, [r_sum])
+        bot.answer_inline_query(query.query.id, [r_sum])
     except Exception as e:
         print("{!s}\n{!s}".format(type(e), str(e)))
 
