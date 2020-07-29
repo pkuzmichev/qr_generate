@@ -34,10 +34,10 @@ def query_text(query):
         files = {'photo': open('qr_code/qr_code.png', 'rb')}
 
         data = {'chat_id': query.id}
-        print('data: ' + data)
+        print('data: ' + str(data))
         r = requests.post(url, files=files, data=data)
 
-        print(query.query.id)
+        print(str(query.query.id))
 
         # KEK {'ok': False, 'error_code': 400, 'description': 'Bad Request: chat not found'}
         print('KEK ' + str(r.json()))
