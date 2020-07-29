@@ -37,8 +37,6 @@ def query_text(query):
         print('data: ' + str(data))
         r = requests.post(url, files=files, data=data)
 
-        print(str(query.query.id))
-
         # KEK {'ok': False, 'error_code': 400, 'description': 'Bad Request: chat not found'}
         print('KEK ' + str(r.json()))
 
