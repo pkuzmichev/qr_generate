@@ -35,7 +35,7 @@ def query_text(query):
 
         print('!!! query: ' + str(query))
 
-        print('!!! CHAT ID: ' + str(query.id))
+        print('!!! CHAT ID: ' + query.id)
 
         data = {'chat_id': query.id}
         # print('data: ' + str(data))
