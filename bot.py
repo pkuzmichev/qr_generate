@@ -54,14 +54,11 @@ def query_text(query):
 
         payload = json.loads(str(r.text))
 
-        print(str(payload))
+        print(str(payload('photo')))
 
         r_sum = types.InlineQueryResultCachedPhoto(
             id=query.id, title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            input_message_content=types.InputMediaPhoto(
-                media='attach://qr_code.png',
-            ),
             photo_file_id=str(r.text)
         )
 
