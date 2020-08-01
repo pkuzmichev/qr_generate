@@ -33,9 +33,9 @@ def query_text(query):
 
         files = {'photo': open('qr_code/qr_code.png', 'rb')}
 
-        print('!!! query: ' + query)
+        print('!!! query: ' + str(query))
 
-        print('!!! CHAT ID: ' + query.chat.id)
+        print('!!! CHAT ID: ' + str(query.chat.id))
 
         data = {'chat_id': query.chat.id}
         # print('data: ' + str(data))
