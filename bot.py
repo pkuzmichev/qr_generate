@@ -38,7 +38,9 @@ def query_text(query):
         print('!!! CHAT ID: ' + query.id)
 
         data = {'chat_id': query.id}
-        # print('data: ' + str(data))
+
+        print('!!! data: ' + str(data))
+
         r = requests.post(url, files=files, data=data)
 
         # KEK {'ok': False, 'error_code': 400, 'description': 'Bad Request: chat not found'}
@@ -47,7 +49,7 @@ def query_text(query):
         # with open('qr_code/qr_code.png', 'rb') as f:
         #     contents = f.read()
         r_sum = types.InlineQueryResultArticle(
-            id='1', title='Create QR    Code',
+            id=query.id, title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
             input_message_content=types.InputMediaPhoto(
                 media='attach://qr_code.png',
