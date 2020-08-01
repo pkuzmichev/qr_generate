@@ -58,7 +58,7 @@ def query_text(query):
             )
         )
 
-        bot.answer_inline_query(query.query.id, [r_sum])
+        bot.answer_inline_query(query.id, r_sum)
     except Exception as e:
         print("{!s}\n{!s}".format(type(e), str(e)))
 
