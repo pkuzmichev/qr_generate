@@ -1,3 +1,4 @@
+import json
 import os
 import telebot
 import requests
@@ -51,7 +52,9 @@ def query_text(query):
         # with open('qr_code/qr_code.png', 'rb') as f:
         #     contents = f.read()
 
-        print('!!! r_payload' + str(r['photo']))
+        payload = json.loads(str(r.text))
+
+        print(str(payload['photo']))
 
         r_sum = types.InlineQueryResultCachedPhoto(
             id=query.id, title='Create QR Code',
@@ -59,7 +62,7 @@ def query_text(query):
             input_message_content=types.InputMediaPhoto(
                 media='attach://qr_code.png',
             ),
-            photo_file_id=r['photo']
+            photo_file_id=str(r.text)
         )
 
         bot.answer_inline_query(query.id, r_sum)
