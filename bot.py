@@ -50,7 +50,7 @@ def query_text(query):
 
         # with open('qr_code/qr_code.png', 'rb') as f:
         #     contents = f.read()
-        r_sum = types.InlineQueryResultArticle(
+        r_sum = types.InlineQueryResultPhoto(
             id=query.id, title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
             input_message_content=types.InputMediaPhoto(
