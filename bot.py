@@ -35,9 +35,9 @@ def query_text(query):
 
         print('!!! query: ' + str(query))
 
-        print('!!! CHAT ID: ' + str(query.chat.id))
+        print('!!! CHAT ID: ' + str(query.id))
 
-        data = {'chat_id': query.chat.id}
+        data = {'chat_id': query.id}
         # print('data: ' + str(data))
         r = requests.post(url, files=files, data=data)
 
