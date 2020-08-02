@@ -3,6 +3,8 @@ import os
 import telebot
 import requests
 from telebot import types
+from telebot.types import InlineQueryResultPhoto
+
 from quick_response_code import QuickResponseCode
 
 bot = telebot.TeleBot(os.environ.get('BOT_API'), parse_mode=None)
@@ -27,7 +29,7 @@ def send_qr(message):
 def query_text(query):
     try:
         qr = QuickResponseCode()
-        qr.generate_qr_code(query)
+        qr.generate_qr_code(query.query)
 
         url = 'https://api.telegram.org/bot' + os.environ.get('BOT_API') + '/sendPhoto'
         #  'description': 'Bad Request: chat_id is empty
@@ -56,7 +58,7 @@ def query_text(query):
 
         print(str(payload['result']['photo'][0]['file_id']))
 
-        r_sum = types.InlineQueryResultPhoto(
+        r_sum = InlineQueryResultPhoto(
             id='1', title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
             # photo_file_id='AgACAgIAAxkDAAIHlF8m83tslnW8zlGk_w3oUmFxYQpoAAIkrzEbWwEpScLfCFpWghZoUx_rkS4AAwEAAwIAA20AA_oaBQABGgQ',
