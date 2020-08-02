@@ -52,7 +52,7 @@ def query_text(query):
         # with open('qr_code/qr_code.png', 'rb') as f:
         #     contents = f.read()
 
-        payload = json.loads(r)
+        payload = json.loads(r.text)
 
         print(str(payload['photo']))
 
