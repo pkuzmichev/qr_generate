@@ -27,7 +27,7 @@ def send_qr(message):
 def query_text(query):
     try:
         qr = QuickResponseCode()
-        qr.generate_qr_code(query.query)
+        qr.generate_qr_code(query)
 
         url = 'https://api.telegram.org/bot' + os.environ.get('BOT_API') + '/sendPhoto'
         #  'description': 'Bad Request: chat_id is empty
@@ -56,10 +56,12 @@ def query_text(query):
 
         print(str(payload['result']['photo'][0]['file_id']))
 
-        r_sum = types.InlineQueryResultCachedPhoto(
+        r_sum = types.InlineQueryResultPhoto(
             id='1', title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            photo_file_id='AgACAgIAAxkDAAIHlF8m83tslnW8zlGk_w3oUmFxYQpoAAIkrzEbWwEpScLfCFpWghZoUx_rkS4AAwEAAwIAA20AA_oaBQABGgQ'
+            # photo_file_id='AgACAgIAAxkDAAIHlF8m83tslnW8zlGk_w3oUmFxYQpoAAIkrzEbWwEpScLfCFpWghZoUx_rkS4AAwEAAwIAA20AA_oaBQABGgQ',
+            photo_url='https://www.kek.jp/ja/media/KEKLogo01.png',
+            thumb_url='https://i.pinimg.com/originals/60/77/0d/60770d776e885f077e898dae54132b66.jpg'
         )
 
         bot.answer_inline_query(query.id, r_sum)
