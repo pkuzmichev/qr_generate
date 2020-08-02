@@ -52,14 +52,14 @@ def query_text(query):
         # with open('qr_code/qr_code.png', 'rb') as f:
         #     contents = f.read()
 
-        payload = json.loads(str(r.text))
+        payload = json.loads(r)
 
-        print(str(payload('photo')))
+        print(str(payload['photo']))
 
         r_sum = types.InlineQueryResultCachedPhoto(
             id=query.id, title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            photo_file_id=str(r.text)
+            photo_file_id=str(payload['photo'])
         )
 
         bot.answer_inline_query(query.id, r_sum)
