@@ -66,6 +66,8 @@ def query_text(query):
             thumb_url='https://i.pinimg.com/originals/60/77/0d/60770d776e885f077e898dae54132b66.jpg'
         )
 
+        print('!!! r_sum: ' + str(r_sum))
+
         bot.answer_inline_query(query.id, r_sum)
     except Exception as e:
         print("{!s}\n{!s}".format(type(e), str(e)))
