@@ -23,7 +23,7 @@ def send_qr(message):
         bot.send_photo(chat_id=message.chat.id, photo=contents, caption=message.text)
 
 
-@bot.inline_handler(func=lambda query: len(query.query) > 0)
+@bot.inline_handler(func=lambda query: True)
 def query_text(query):
     try:
         qr = QuickResponseCode()
@@ -57,9 +57,9 @@ def query_text(query):
         print(str(payload['result']['photo'][0]['file_id']))
 
         r_sum = types.InlineQueryResultCachedPhoto(
-            id=query.id, title='Create QR Code',
+            id='1', title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            photo_file_id=str(payload['result']['photo'][0]['file_id'])
+            photo_file_id='AgACAgIAAxkDAAIHlF8m83tslnW8zlGk_w3oUmFxYQpoAAIkrzEbWwEpScLfCFpWghZoUx_rkS4AAwEAAwIAA20AA_oaBQABGgQ'
         )
 
         bot.answer_inline_query(query.id, r_sum)
