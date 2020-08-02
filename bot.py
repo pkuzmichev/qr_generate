@@ -54,12 +54,12 @@ def query_text(query):
 
         payload = json.loads(r.text)
 
-        print(str(payload['photo']))
+        print(str(payload['result']['photo'][0]['file_id']))
 
         r_sum = types.InlineQueryResultCachedPhoto(
             id=query.id, title='Create QR Code',
             description='Input text or link and I generate QR code for you!',
-            photo_file_id=str(payload['photo'])
+            photo_file_id=str(payload['result']['photo'][0]['file_id'])
         )
 
         bot.answer_inline_query(query.id, r_sum)
