@@ -34,15 +34,15 @@ def inline_cached_photo(query):
 
     qr.generate_qr_code(query.query)
 
-    if query == '123':
-        info_photo = bot.send_photo(chat_id='1316606', photo=open('qr_code/qr_code.png', 'rb'), caption=query)
+    if query:
+        info_photo = bot.send_photo(chat_id='1316606', photo=open('qr_code/qr_code.png', 'rb'), caption=query.query)
         print('original photo', info_photo['photo'][-1]['file_id'])
         thumb_photo = info_photo['photo'][0]['file_id']
         original_photo = info_photo['photo'][-1]['file_id']
         results = [
             InlineQueryResultCachedPhoto(
                 id=uuid4(),
-                title=query,
+                title=query.query,
                 photo_file_id=original_photo)
         ]
         print('results', results)
