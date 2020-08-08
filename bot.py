@@ -33,6 +33,7 @@ def inline_cached_photo(update, context):
 
     if query:
         info_photo = bot.send_photo(chat_id='1316606', photo=open('qr_code/qr_code.png', 'rb'), caption=query)
+        print('original photo', info_photo['photo'][-1]['file_id'])
         thumb_photo = info_photo['photo'][0]['file_id']
         original_photo = info_photo['photo'][-1]['file_id']
         results = [
@@ -41,6 +42,7 @@ def inline_cached_photo(update, context):
                 title=query,
                 photo_file_id=original_photo)
         ]
+        print('results', results)
         update.inline_query.answer(results)
 
 
