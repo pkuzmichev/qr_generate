@@ -32,7 +32,7 @@ def inline_cached_photo(update, context):
     qr.generate_qr_code(query)
 
     if query:
-        info_photo = bot.send_photo(chat_id='1158323636', photo=open('qr_code/qr_code.png.png', 'rb'), caption=query)
+        info_photo = bot.send_photo(chat_id='1316606', photo=open('qr_code/qr_code.png.png', 'rb'), caption=query)
         thumb_photo = info_photo['photo'][0]['file_id']
         original_photo = info_photo['photo'][-1]['file_id']
         results = [
