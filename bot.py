@@ -17,16 +17,12 @@ def send_welcome(message):
 
 @bot.message_handler(content_types=['text', 'photo'])
 def send_qr(message):
-
-    if message == '/getchannelid':
-        bot.reply_to(message, 'channel_id = {!s}'.format(message.chat.id))
-    else:
-        qr = QuickResponseCode()
-        qr.generate_qr_code(message.text)
-
-        with open('qr_code/qr_code.png', 'rb') as f:
-            contents = f.read()
-            bot.send_photo(chat_id=message.chat.id, photo=contents, caption=message.text)
+    print('channel_id = {!s}'.format(message.chat.id))
+    qr = QuickResponseCode()
+    qr.generate_qr_code(message.text)
+    with open('qr_code/qr_code.png', 'rb') as f:
+        contents = f.read()
+        bot.send_photo(chat_id=message.chat.id, photo=contents, caption=message.text)
 
 
 def inline_cached_photo(update, context):
