@@ -25,12 +25,14 @@ def send_qr(message):
         bot.send_photo(chat_id=message.chat.id, photo=contents, caption=message.text)
 
 
-@bot.inline_handler(func=lambda update: True)
-def inline_cached_photo(update):
+@bot.inline_handler(func=lambda query: True)
+def inline_cached_photo(query):
     qr = QuickResponseCode()
 
-    query = update.inline_query.query
-    qr.generate_qr_code(query)
+    # query = update.inline_query.query
+    print('query', query.query)
+
+    qr.generate_qr_code(query.query)
 
     if query == '123':
         info_photo = bot.send_photo(chat_id='1316606', photo=open('qr_code/qr_code.png', 'rb'), caption=query)
@@ -44,7 +46,8 @@ def inline_cached_photo(update):
                 photo_file_id=original_photo)
         ]
         print('results', results)
-        update.inline_query.answer(results)
+        # update.inline_query.answer(results)
+        bot.answer_inline_query(query.id, results)
 
 
 @bot.channel_post_handler(commands=["getchannelid"])
