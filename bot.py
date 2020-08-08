@@ -26,7 +26,7 @@ def send_qr(message):
 
 
 @bot.inline_handler(func=lambda update: True)
-def inline_cached_photo(update, context):
+def inline_cached_photo(update):
     qr = QuickResponseCode()
 
     query = update.inline_query.query
