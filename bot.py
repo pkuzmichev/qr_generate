@@ -17,6 +17,7 @@ def send_welcome(message):
 
 @bot.message_handler(content_types=['text', 'photo'])
 def send_qr(message):
+
     if message == '/getchannelid':
         bot.reply_to(message, 'channel_id = {!s}'.format(message.chat.id))
     qr = QuickResponseCode()
