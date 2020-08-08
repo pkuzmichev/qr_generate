@@ -25,6 +25,7 @@ def send_qr(message):
         bot.send_photo(chat_id=message.chat.id, photo=contents, caption=message.text)
 
 
+@bot.inline_handler(func=lambda update: True)
 def inline_cached_photo(update, context):
     qr = QuickResponseCode()
 
