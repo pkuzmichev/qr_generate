@@ -39,9 +39,14 @@ def inline_cached_photo(update, context):
             InlineQueryResultCachedPhoto(
                 id=uuid4(),
                 title=query,
-                photo_file_id=original_photo,)
-            ]
+                photo_file_id=original_photo, )
+        ]
         update.inline_query.answer(results)
+
+
+@bot.channel_post_handler(commands=["getchannelid"])
+def chat_id(message):
+    bot.reply_to(message, 'channel_id = {!s}'.format(message.chat.id))
 
 
 if __name__ == '__main__':
