@@ -36,7 +36,7 @@ def inline_cached_photo(query):
 
 
     # 1316606
-    info_photo = bot.send_photo(chat_id=query.chat.id,
+    info_photo = bot.send_photo(chat_id=query.from_user.id,
                                 photo=open('qr_code/qr_code.png', 'rb'),
                                 caption=query.query)
     print('original photo', str(info_photo.json()['photo'][0]['file_id']))
