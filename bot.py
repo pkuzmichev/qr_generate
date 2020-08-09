@@ -1,3 +1,4 @@
+import json
 import os
 from uuid import uuid4
 
@@ -39,14 +40,16 @@ def inline_cached_photo(query):
     info_photo = bot.send_photo(chat_id=query.from_user.id,
                                 photo=open('qr_code/qr_code.png', 'rb'),
                                 caption=query.query)
+
+    original_photo = json.loads(info_photo.text)
     # print('original photo', str(info_photo.json()['photo'][0]['file_id']))
     # thumb_photo = info_photo['photo'][0]['file_id']
-    original_photo = info_photo.json()['photo'][-1]['file_id']
+    original_photo_id = original_photo['photo'][-1]['file_id']
     results = [
         InlineQueryResultCachedPhoto(
             id=uuid4(),
             title=query.query,
-            photo_file_id=original_photo)
+            photo_file_id=original_photo_id)
     ]
     print('results', results)
     # update.inline_query.answer(results)
