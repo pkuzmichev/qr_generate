@@ -49,7 +49,7 @@ def inline_cached_photo(query):
         InlineQueryResultCachedPhoto(
             id=uuid4(),
             title=query.query,
-            photo_file_id=original_photo_id)
+            photo_file_id=str(original_photo_id))
     ]
     print('results', results)
     # update.inline_query.answer(results)
