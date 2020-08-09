@@ -41,7 +41,7 @@ def inline_cached_photo(query):
                                 caption=query.query)
     # print('original photo', str(info_photo.json()['photo'][0]['file_id']))
     # thumb_photo = info_photo['photo'][0]['file_id']
-    original_photo = info_photo['photo'][-1]['file_id']
+    original_photo = info_photo.json()['photo'][-1]['file_id']
     results = [
         InlineQueryResultCachedPhoto(
             id=uuid4(),
