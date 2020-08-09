@@ -36,22 +36,21 @@ def inline_cached_photo(query):
 
 
     # 1316606
-    if query:
-        info_photo = bot.send_photo(chat_id=query.from_user.id,
-                                    photo=open('qr_code/qr_code.png', 'rb'),
-                                    caption=query.query)
-        print('original photo', info_photo['photo'][-1]['file_id'])
-        thumb_photo = info_photo['photo'][0]['file_id']
-        original_photo = info_photo['photo'][-1]['file_id']
-        results = [
-            InlineQueryResultCachedPhoto(
-                id=uuid4(),
-                title=query.query,
-                photo_file_id=original_photo)
-        ]
-        print('results', results)
-        # update.inline_query.answer(results)
-        bot.answer_inline_query(query.id, results)
+    info_photo = bot.send_photo(chat_id=query.from_user.id,
+                                photo=open('qr_code/qr_code.png', 'rb'),
+                                caption=query.query)
+    print('original photo', info_photo['photo'][-1]['file_id'])
+    thumb_photo = info_photo['photo'][0]['file_id']
+    original_photo = info_photo['photo'][-1]['file_id']
+    results = [
+        InlineQueryResultCachedPhoto(
+            id=uuid4(),
+            title=query.query,
+            photo_file_id=original_photo)
+    ]
+    print('results', results)
+    # update.inline_query.answer(results)
+    bot.answer_inline_query(query.id, results)
 
 
 @bot.channel_post_handler(commands=["getchannelid"])
