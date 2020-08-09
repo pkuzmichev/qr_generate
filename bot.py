@@ -40,7 +40,8 @@ def inline_cached_photo(query):
                                 photo=open('qr_code/qr_code.png', 'rb'),
                                 caption=query.query)
 
-    print(str(info_photo.json))
+    info_photo_json = json.loads(info_photo)
+    print('info_photo_json', info_photo_json)
 
     original_photo = json.loads(info_photo.text)
     # print('original photo', str(info_photo.json()['photo'][0]['file_id']))
