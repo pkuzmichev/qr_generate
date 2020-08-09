@@ -47,11 +47,11 @@ def inline_cached_photo(query):
     # original_photo_id = original_photo['photo'][-1]['file_id']
     results = [
         InlineQueryResultCachedPhoto(
-            id=uuid4(),
+            # id=uuid4(),
+            id='1',
             title=query.query,
             photo_file_id=info_photo.json['photo'][0]['file_id'])
     ]
-    print('results', results)
     # update.inline_query.answer(results)
     bot.answer_inline_query(query.id, results)
 
