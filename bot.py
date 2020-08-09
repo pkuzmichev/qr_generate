@@ -41,7 +41,7 @@ def inline_cached_photo(query):
                                 caption=query.query)
 
     info_photo_json = json.loads(info_photo)
-    print('info_photo_json', info_photo_json)
+    print('info_photo_json', info_photo_json.text)
 
     original_photo = json.loads(info_photo.text)
     # print('original photo', str(info_photo.json()['photo'][0]['file_id']))
