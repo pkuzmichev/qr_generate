@@ -65,7 +65,8 @@ def inline_cached_photo(query):
             photo_file_id=info_photo.json['photo'][0]['file_id'])
     ]
 
-    if query.query == '':
+    print('NONE:', query.query)
+    if query.query is None:
         bot.answer_inline_query(query.id, empty_results)
     else:
         bot.answer_inline_query(query.id, results)
