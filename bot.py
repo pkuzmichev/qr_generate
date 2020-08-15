@@ -44,7 +44,7 @@ def inline_cached_photo(query):
                 # id=uuid4(),
                 id='1',
                 title=query.query,
-                photo_file_id=empty_photo.json['photo'][0]['file_id'])
+                photo_file_id=info_photo.json['photo'][0]['file_id'])
         ]
         bot.answer_inline_query(query.id, results)
 
@@ -57,7 +57,7 @@ def inline_cached_photo(query):
                 # id=uuid4(),
                 id='2',
                 title=query.query,
-                photo_file_id=info_photo.json['photo'][0]['file_id'])
+                photo_file_id=empty_photo.json['photo'][0]['file_id'])
         ]
         bot.answer_inline_query(query.id, empty_results)
 
