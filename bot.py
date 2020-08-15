@@ -40,6 +40,10 @@ def inline_cached_photo(query):
                                 photo=open('qr_code/qr_code.png', 'rb'),
                                 caption=query.query)
 
+    empty_photo = bot.send_photo(chat_id=query.from_user.id,
+                                 photo=open('qr_code/empty.png', 'rb'),
+                                 caption=query.query)
+
     print('json info_photo', info_photo.json['photo'][0]['file_id'])
 
     # print('original photo', str(info_photo.json()['photo'][0]['file_id']))
@@ -50,10 +54,22 @@ def inline_cached_photo(query):
             # id=uuid4(),
             id='1',
             title=query.query,
+            photo_file_id=empty_photo.json['photo'][0]['file_id'])
+    ]
+
+    empty_results = [
+        InlineQueryResultCachedPhoto(
+            # id=uuid4(),
+            id='2',
+            title=query.query,
             photo_file_id=info_photo.json['photo'][0]['file_id'])
     ]
+
+    if query.query == '':
+        bot.answer_inline_query(query.id, empty_results)
+    else:
+        bot.answer_inline_query(query.id, results)
     # update.inline_query.answer(results)
-    bot.answer_inline_query(query.id, results)
 
 
 @bot.channel_post_handler(commands=["getchannelid"])
