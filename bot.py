@@ -34,19 +34,7 @@ def inline_cached_photo(query):
     # query = update.inline_query.query
     print('query', query.query)
 
-    if not query.query:
-        empty_photo = bot.send_photo(chat_id=query.from_user.id,
-                                     photo=open('qr_code/empty.png', 'rb'),
-                                     caption=query.query)
-        empty_results = [
-            InlineQueryResultCachedPhoto(
-                # id=uuid4(),
-                id='2',
-                title=query.query,
-                photo_file_id=info_photo.json['photo'][0]['file_id'])
-        ]
-        bot.answer_inline_query(query.id, empty_results)
-    else:
+    if query.query:
         qr.generate_qr_code(query.query)
         info_photo = bot.send_photo(chat_id=query.from_user.id,
                                     photo=open('qr_code/qr_code.png', 'rb'),
@@ -59,6 +47,19 @@ def inline_cached_photo(query):
                 photo_file_id=empty_photo.json['photo'][0]['file_id'])
         ]
         bot.answer_inline_query(query.id, results)
+
+    else:
+        empty_photo = bot.send_photo(chat_id=query.from_user.id,
+                                     photo=open('qr_code/empty.png', 'rb'),
+                                     caption=query.query)
+        empty_results = [
+            InlineQueryResultCachedPhoto(
+                # id=uuid4(),
+                id='2',
+                title=query.query,
+                photo_file_id=info_photo.json['photo'][0]['file_id'])
+        ]
+        bot.answer_inline_query(query.id, empty_results)
 
     # 1316606
     # info_photo = bot.send_photo(chat_id=query.from_user.id,
